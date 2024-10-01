@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "scrapper-inbox-outbox"
+version = "0.1.0"
+description = ""
+authors = ["Gustavo Brito <britopereiragustavo+github@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+python = "^3.12.1"
+sqlalchemy = "^2.0.35"
+smart-url = "^1.0.1"
+requests = "^2.32.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+crawl-starwars-people = "app.crawlers.starwars_api.start:main"
