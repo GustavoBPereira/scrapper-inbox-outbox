@@ -1,8 +1,8 @@
 import argparse
 
 from app.crawlers.base.client import HttpClient
+from app.crawlers.base.processor import process_inbox
 from app.crawlers.starwars_api.get import crawl
-from app.crawlers.starwars_api.process import process_inbox
 from app.infra.db import session
 from app.infra.db.tables import Inbox, State
 
@@ -27,4 +27,4 @@ def main():
         session.add(new_inbox_entry)
         session.commit()
         if inbox_state == State.PROCESSING:
-            process_inbox(new_inbox_entry.id)
+            process_inbox(new_inbox_entry.id, 'app.crawlers.starwars_api.processor')
