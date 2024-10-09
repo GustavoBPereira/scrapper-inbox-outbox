@@ -19,11 +19,12 @@ def main():
         try:
             raw_response = crawl(client, page)
             inbox_state = State.PROCESSING
-        except Exception as Error:
+        except Exception as error:
             inbox_state = State.FAILED
-            raw_response = {'reason': Error}
+            raw_response = {'reason': error}
 
         new_inbox_entry = Inbox(payload=raw_response, state=inbox_state)
         session.add(new_inbox_entry)
         session.commit()
-        process_inbox(new_inbox_entry.id)
+        if inbox_state == State.PROCESSING:
+            process_inbox(new_inbox_entry.id)

@@ -23,6 +23,8 @@ class Inbox(Base):
 
     outbox = relationship("Outbox", back_populates="inbox", uselist=False)
 
+    def __repr__(self):
+        return f'{self.id} - {self.state} - {str(self.payload)[0:64]}'
 
 class Outbox(Base):
     __tablename__ = 'outbox'
@@ -35,3 +37,6 @@ class Outbox(Base):
 
     inbox_id = Column(Integer, ForeignKey('inbox.id'), nullable=False)
     inbox = relationship("Inbox", back_populates="outbox")
+
+    def __repr__(self):
+        return f'{self.id} - {self.state} - {str(self.payload)[0:64]}'
