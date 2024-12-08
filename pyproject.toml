@@ -19,4 +19,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 crawl-starwars-people = "app.crawlers.starwars_api.start:main"
+crawl-playeasy = "app.crawlers.playeasy.start:main"
 print-db = "app.infra.db.utils:main"

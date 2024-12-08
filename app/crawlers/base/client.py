@@ -10,7 +10,7 @@ class HttpClient:
         url = self._build_url(endpoint, params)
         response = requests.get(url, params=params, headers=headers)
         response.raise_for_status()
-        return response.json()
+        return response.text
 
     def post(self, endpoint, params : Optional[Dict] = None, data : Optional[Dict] = None, headers : Optional[Dict] = None):
         url = self._build_url(endpoint, params)
